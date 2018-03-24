@@ -12,15 +12,18 @@ final class MainPage: Page {
         waitFor(element: title, status: .exist)
     }
     
-    func checkHasMeal(name: String, expected: Bool = true ) {
+    @discardableResult
+    func checkHasMeal(name: String, expected: Bool = true ) -> Self {
         let meal = meals[name].firstMatch
-        
+
         switch expected {
         case true:
             XCTAssertEqual(meal.label, name)
         case false:
             waitFor(element: meal, status: .notExist)
         }
+
+        return self
     }
     
     @discardableResult
