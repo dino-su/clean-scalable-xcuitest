@@ -14,7 +14,6 @@ foodTracker = TestBuilder(app).setLocale("en_US").launch()
 
 or with default locale
 ```swift
-swift
 foodTracker = TestBuilder(app).launch()
 ```
 
