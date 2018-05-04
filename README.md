@@ -4,7 +4,8 @@ Sample project of iOS UI test automation using XCUITest.
 
 Sample App: [FoodTracker](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/)
 
-![Food Tracker](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Art/IN_sim_navbar_2x.png)
+## BDD Steps with Xcode Snippets
+![BDD](480P.gif)
 
 ## Flexible app launcher
 Test app with different locale
@@ -56,16 +57,16 @@ func testAddMeal() {
 ## BDD with XCTContext
 ```swift
 func testAddMeal() {
-  Given("I am on add meal screen") {
-    foodTracker.on(page: MainPage.self).openAdd()
+  Given("I am in Main screen") {
+      foodTracker = TestBuilder(app).setLocale().launch()
   }
 
   When("I add meal with name 'Kung Pao Chicken'") {
-    foodTracker.on(page: AddPage.self).addMeal(name: "Kung Pao Chicken")
+      foodTracker.on(page: MainPage.self).openAdd().addMeal(name: "Kung Pao Chicken")
   }
 
-  Then("I will see 'Kung Pao Chicken' appear on main screen") {
-    foodTracker.on(page: MainPage.self).checkHasMeal(name: "Kung Pao Chicken")
+  Then("I see 'Kung Pao Chicken' appear in Main screen") {
+      foodTracker.on(page: MainPage.self).checkHasMeal(name: "Kung Pao Chicken")
   }
 }
 ```
